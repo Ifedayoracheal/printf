@@ -1,38 +1,32 @@
-#include "main.h"
+#ifndef _MAIN_H_
+#define _MAIN_H_
 
+#include <stdarg.h>
 /**
- * _puts - prints a string with newline
- * @str: the string to print
- *
- * Return:( str-a)
+ * struct print - structure for printing various types
+ * @t: type to print
+ * @f: function to print
  */
-int _puts(char *str)
+typedef struct print
 {
-	char *a = str;/*declaration of variables*/
+	char *t;
+	int (*f)(va_list);
+} print_t;
 
-	while (*str)
-		_putchar(*str++);
-	return (str - a);
-}
+int _putchar(char c);
+int _printf(const char *format, ...);
+int print_c(va_list c);
+int print_s(va_list s);
+int print_i(va_list i);
+int print_d(va_list d);
+int print_u(va_list u);
+int print_b(va_list b);
+int print_o(va_list o);
+int print_x(va_list x);
+int print_X(va_list X);
+int print_p(va_list p);
+int print_S(va_list S);
+int print_r(va_list r);
+int print_R(va_list R);
 
-/**
- * _putchar - writes the character c to stdout
- * @c: The character to print
- *
- * Return: On success 1.
- * On error, -1 is returned, and error is set appropriately.
- */
-int _putchar(int c)
-{
-	static int i;
-	static char buf[OUTPUT_BUF_SIZE];
-
-	if (c == BUF_FLUSH || i >= OUTPUT_BUF_SIZE)
-	{
-		write(1, buf, i);
-		i = 0;
-	}
-	if (c != BUF_FLUSH)
-		buf[i++] = c;
-	return (1);
-}
+#endif  /* _MAIN_H */
